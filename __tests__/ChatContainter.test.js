@@ -18,11 +18,11 @@ describe('Chat Container:', () => {
   });
 
   it('Should render allMsgs div', () => {
-    expect(wrapper.find('#allMsgs div')).toHaveLength(1);
+    expect(wrapper.find('#allMsgs')).toHaveLength(1);
   });
 
   it('Should render MessageBox div', () => {
-    const chatDiv = wrapper.find('#ChatContainer');
+    const chatDiv = wrapper.find('#chatContainer');
     expect(chatDiv.find(MessageBox)).toHaveLength(1);
   });
 }); // end of test
