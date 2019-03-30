@@ -33,7 +33,7 @@ describe('Message Component', () => {
 
     it('Should be the first div', () => {
       expect(userWrapper).not.toBe(undefined);
-      expect(userWrapper.hasClass('username')).toBe(true);
+      expect(wrapper.find('.message').childAt(0)).toEqual(userWrapper);
     });
 
     it('Should have a child node', () => {
@@ -55,7 +55,7 @@ describe('Message Component', () => {
 
     it('Should be the second div', () => {
       expect(messageWrapper).not.toBe(undefined);
-      expect(messageWrapper.hasClass('msg')).toBe(true);
+      expect(wrapper.find('.message').childAt(1)).toEqual(messageWrapper);
     });
 
     it('Should have a child node', () => {
