@@ -51,7 +51,12 @@
     "react-dom": "^16.8.6"
   },
   "jest": {
-    "moduleFileExtensions": ["js", "jsx"],
-    "moduleDirectories": ["node_modules"]
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ]
   }
 }
