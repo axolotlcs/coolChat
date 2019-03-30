@@ -15,13 +15,11 @@ class App extends Component {
   }
 
   signUpHandle() {
-    console.log('Signup')
+    console.log('Signup');
   }
 
   render() {
-    return (<AuthContainer
-        handleLogin={this.handleLogin}
-        handleSignUp={this.signUpHandle}/>);
+    return <AuthContainer handleLogin={this.handleLogin} handleSignUp={this.signUpHandle} />;
   }
 }
 
