@@ -1,6 +1,9 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import AuthContainer from '../client/components/AuthContainer';
+
+configure({ adapter: new Adapter() });
 
 describe('Auth Container Component: ', () => {
   let wrapper;
@@ -8,29 +11,30 @@ describe('Auth Container Component: ', () => {
   beforeAll(() => {
     wrapper = shallow(<AuthContainer
       handleSignUp={clickFn} 
-      handleLogIn={clickFn}
+      handleLogin={clickFn}
     />);
   });
 
   it('Should render an auth div', () => {
-    expect(wrapper.contains(<div className="auth" />)).toBe(true);
+    expect(wrapper.find('.auth')).toHaveLength(1);
   });
 
   it('Should render two buttons', () => {
-    const authDiv = wrapper.find('div');
+    const authDiv = wrapper.find('.auth');
     expect(authDiv.find('button')).toHaveLength(2);
   });
 
   describe('Sign Up Button:', () => {
     it('Should be the first button', () => {
-      const authDiv = wrapper.find('div');
-      const signUpBtn = authDiv.childAt(0);
+      const signUpBtn = wrapper.find('.signUp');
+      expect(signUpBtn).toHaveLength(1);
+      // const signUpBtn = authDiv.childAt(3);
       expect(signUpBtn.type()).toEqual('button');
-      expect(signUpBtn.hasClassName('signUp')).toBe(true);
+      // expect(signUpBtn.hasClass('signUp')).toBe(true);
     });
 
     it('Sign up button should trigger fn call on click', () => {
-      const signUpBtn = wrapper.find('div').childAt(0);
+      const signUpBtn = wrapper.find('.auth').childAt(3);
       signUpBtn.simulate('click');
       expect(clickFn.mock.calls.length).toBe(1);
     });
@@ -38,13 +42,13 @@ describe('Auth Container Component: ', () => {
 
   describe('Login Button:', () => {
     it('Should be the second button', () => {
-      const loginBtn = wrapper.find('div').childAt(1);
+      const loginBtn = wrapper.find('.login');
+      expect(loginBtn).toHaveLength(1);
       expect(loginBtn.type()).toEqual('button');
-      expect(loginBtn.hasClassName('login')).toBe(true);
     });
 
     it('Login button should trigger fn call on click', () => {
-      const loginBtn = wrapper.find('div').childAt(1);
+      const loginBtn = wrapper.find('.login');
       loginBtn.simulate('click');
       expect(clickFn.mock.calls.length).toBe(2);
     });
@@ -53,12 +57,12 @@ describe('Auth Container Component: ', () => {
   describe('Inputs', () => {
     it('Should have a username input', () => {
       const usernameInput = wrapper.find('#usernameInput');
-      expect(usernameInput).toExist();
+      expect(usernameInput).toHaveLength(1);
     });
 
     it('Should have a password input', () => {
       const passwordInput = wrapper.find('#passwordInput');
-      expect(passwordInput).toExist();
+      expect(passwordInput).toHaveLength(1);
     });
   });
 });
