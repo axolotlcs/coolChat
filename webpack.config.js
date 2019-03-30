@@ -18,19 +18,17 @@ module.exports = {
             presets: [
               '@babel/preset-react',
               '@babel/preset-env',
-              {
-                plugins: [
-                  '@babel/plugin-proposal-class-properties'
-                ]
-              }
-            ]
-          }
-        }
-      }
-    ]
+            ],
+            plugins: [
+              '@babel/plugin-proposal-class-properties',
+            ],
+          },
+        },
+      },
+    ],
   },
   devServer: {
     publicPath: '/dist/',
-    hot: true
-  }
-}
+    hot: true,
+  },
+};
