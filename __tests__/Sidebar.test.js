@@ -2,15 +2,21 @@ import React from 'react';
 import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import Sidebar from '../client/components/Sidebar';
-// import ActiveUser from '../client/components/ActiveUser';
+import ActiveUser from '../client/components/ActiveUser';
 
 configure({ adapter: new Adapter() });
 
 describe('Sidebar component', () => {
   let wrapper;
+  const testUsers = [
+    { username: 'CoolUser123' },
+    { username: 'CoolUser456' },
+    { username: 'CoolUser789' },
+    { username: 'CoolestUser123' },
+  ];
 
   beforeAll(() => {
-    wrapper = shallow(<Sidebar activeUsers=" " />);
+    wrapper = shallow(<Sidebar activeUsers={testUsers} />);
   });
 
   it('Should render a sidebar div', () => {
@@ -29,8 +35,8 @@ describe('Sidebar component', () => {
       expect(activeUsersText.text()).toEqual('Active Users');
     });
 
-    // it.skip('should render an ActiveUser component for each active user', () => {
-    //   expect(sidebarDiv.find(ActiveUser)).toEqual();
-    // });
+    it('should render an ActiveUser component for each active user', () => {
+      expect(sidebarDiv.find(ActiveUser)).toHaveLength(4);
+    });
   });
 });
