@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class AuthContainer extends Component {
   constructor(props) {
@@ -10,6 +11,8 @@ class AuthContainer extends Component {
   }
 
   render() {
+    const { handleSignUp, handleLogin } = this.props;
+
     return (
       <div className="auth">
         <input
@@ -25,14 +28,14 @@ class AuthContainer extends Component {
         <button
           type="button"
           className="signUp"
-          onClick={this.props.handleSignUp}
+          onClick={handleSignUp}
         >
           Sign Up
         </button>
         <button
           type="button"
           className="login"
-          onClick={this.props.handleLogin}
+          onClick={handleLogin}
         >
           Login
         </button>
@@ -40,5 +43,10 @@ class AuthContainer extends Component {
     );
   }
 }
+
+AuthContainer.propTypes = {
+  handleLogin: PropTypes.func.isRequired,
+  handleSignUp: PropTypes.func.isRequired,
+};
 
 export default AuthContainer;
