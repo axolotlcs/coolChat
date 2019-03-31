@@ -5,10 +5,11 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
 import gql from 'graphql-tag';
 import AuthContainer from './components/AuthContainer.jsx';
+import ChatroomContainer from './components/ChatroomContainer.jsx';
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
-  uri: 'http://localhost:4000/'
+  uri: 'http://localhost:4000/graphql'
 })
 const client = new ApolloClient({
   cache,
@@ -66,6 +67,7 @@ class App extends Component {
     return (
       <ApolloProvider client={client}>
         <AuthContainer handleLogin={this.handleLogin} handleSignUp={this.signUpHandle} />
+        <ChatroomContainer />
       </ApolloProvider>
     );
   }

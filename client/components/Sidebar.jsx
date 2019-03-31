@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ActiveUser from './ActiveUser';
+import ActiveUser from './ActiveUser.jsx';
 
 function Sidebar({ activeUsers }) {
   return (
