@@ -27,4 +27,8 @@ module.exports = gql`
     createUser(userName: String!, password: String!): UserSuccess
     createMessage(userId: Int!, message: String!): Message
   }
+
+  type Subscription {
+    messageAdded: Message
+  }
 `;

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const styles = {
-  display: 'inline-flex',
+  display: 'flex',
 };
 
 const Msg = (props) => {
