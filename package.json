@@ -6,7 +6,9 @@
   "scripts": {
     "test": "jest",
     "build": "webpack",
-    "start": "webpack-dev-server --hot --mode development"
+    "dev": "webpack-dev-server --hot --mode development",
+    "start": "nodemon server/server.js",
+    "prestart": "npm run build"
   },
   "repository": {
     "type": "git",
