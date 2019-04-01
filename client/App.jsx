@@ -1,74 +1,34 @@
 import React, { Component } from 'react';
-import { ApolloClient } from 'apollo-boost';
-import { ApolloProvider, graphql, compose, Query } from 'react-apollo';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { HttpLink } from 'apollo-link-http';
-import gql from 'graphql-tag';
-import AuthContainer from './components/AuthContainer.jsx';
-import ChatroomContainer from './components/ChatroomContainer.jsx';
-
-const cache = new InMemoryCache();
-const link = new HttpLink({
-  uri: 'http://localhost:4000/graphql'
-})
-const client = new ApolloClient({
-  cache,
-  link
-})
-
-
-const UsersQuery = gql`
-     {users} 
-`;
-
-const messageQuery = gql`{
-  messages {
-    userId
-    message
-    created_at
-  }
-}`;
-
-const createMessage = gql`
-  mutation($userId: Int!, $message: String!) {
-    createMessage (message: $message) {
-      userId
-      message
-    }
-  }`;
-
-const createUser = gql`
-  mutation($userName: String!, $password: String!) {
-    createUser (userName: $userName) {
-      userName
-      passwords
-    }
-  }
-`;
+import AuthContainer from './components/AuthContainer';
+import Header from './components/Header';
+import ChatroomContainer from './components/ChatroomContainer';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { chat: false };
-    this.handleLogin = this.loginHandle.bind(this);
-    this.signUpHandle = this.signUpHandle.bind(this);
+    this.state = { };
+    // this.handleLogin = this.loginHandle.bind(this);
+    // this.signUpHandle = this.signUpHandle.bind(this);
   }
 
-  loginHandle() {
-    console.log('Login');
-  }
+  // loginHandle() {
+  //   console.log('Login');
+  // }
 
-  signUpHandle() {
-    console.log('Signup');
-  }
+  // signUpHandle() {
+  //   console.log('Signup');
+  // }
 
   render() {
     return (
-      <ApolloProvider client={client}>
-        <AuthContainer handleLogin={this.handleLogin} handleSignUp={this.signUpHandle} />
-        <ChatroomContainer />
-      </ApolloProvider>
+      <div id="app" style={{ height: '100%' }}>
+        <Header />
+        <div style={{ height: 'calc(100% - 60px)' }}>
+          <ChatroomContainer />
+        </div>
+      </div>
+      // <AuthContainer handleLogin={this.handleLogin} handleSignUp={this.signUpHandle} />
     );
   }
 }
