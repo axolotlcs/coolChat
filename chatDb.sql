@@ -19,4 +19,5 @@ CREATE TABLE IF NOT EXISTS messages (
 -- coolchat=# GRANT ALL PRIVILEGES ON DATABASE coolchat TO student;
 -- coolchat=# GRANT ALL PRIVILEGES ON users TO student;
 -- coolchat=# GRANT  ALL PRIVILEGES ON messages TO student;
--- GRANT USAGE ON SEQUENCE users__id_seq TO student
+-- GRANT USAGE ON SEQUENCE users__id_seq TO student;
+-- GRANT USAGE ON SEQUENCE messages__id_seq TO student;
