@@ -6,6 +6,7 @@ const typeDefs = require('./schemas/types');
 const mutations = require('./schemas/mutations');
 const queries = require('./schemas/queries');
 const subscriptions = require('./schemas/subscriptions');
+const path = require('path')
 
 app.use(cors());
 
@@ -24,6 +25,18 @@ server.applyMiddleware({ app });
 
 const httpServer = http.createServer(app);
 server.installSubscriptionHandlers(httpServer);
+
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../index.html'));
+})
+
+app.get('/dist/bundle.js', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../dist/bundle.js'))
+})
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../index.html'));
+})
 
 httpServer.listen(4000, (err) => {
   if (err) throw err;
