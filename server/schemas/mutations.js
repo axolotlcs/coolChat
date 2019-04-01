@@ -14,12 +14,16 @@ module.exports = {
     const values = [userId, message];
     const msg = (await query(queryText, values)).rows.reduce((acc, cur) => {
       const { user_id, message, created_at } = cur;
-      acc.push({ userId: user_id, message, created_at });
+      acc.push({ username: user_id, message, created_at });
       return acc;
     }, [])[0];
     // publishing new data over subscriptions
-    await pubsub.publish(MSG_ADDED, { messageAdded: msg });
-    return msg;
+    const messageResponse = {
+      mutation: 'CREATED',
+      message: msg,
+    };
+    await pubsub.publish(MSG_ADDED, { messageAdded: messageResponse });
+    return messageResponse;
   },
   // not verifying write to DB; errors unhandled
   createUser: async (_, { userName, password }) => {
