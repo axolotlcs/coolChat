@@ -1,8 +1,6 @@
-import React, { Component, Fragment } from 'react';
-import { Query } from 'react-apollo';
+import React, { Component } from 'react';
 import Msg from './Msg';
 import MessageBox from './MessageBox';
-import { messageQuery } from '../schema/queries';
 
 const styles = {
   container: {
@@ -13,29 +11,25 @@ const styles = {
 };
 
 class ChatContainer extends Component {
+  componentDidMount() {
+    this.props.subscribeToMore();
+  }
+
   render() {
+    const { messages } = this.props.data;
     return (
-      <Query query={messageQuery}>
-        {({ data, loading, error }) => {
-          if (loading) return <p>Loading</p>;
-          if (error) return <p>error</p>;
-          return (
-            <div id="chatContainer" style={styles.container}>
-              <div style={{ height: '60vh', overflowY: 'auto' }}>
-                <Fragment>
-                  {data.messages
-                    && data.messages.reduce((acc, cur) => {
-                      acc.push(<Msg username={cur.username} message={cur.message} />);
-                      return acc;
-                    }, [])}
-                </Fragment>
-              </div>
-              <MessageBox />
-            </div>
-          );
-        }}
-      </Query>
+      <div id="chatContainer" style={styles.container}>
+        <div style={{ height: '90%' }}>
+          { messages
+              && messages.reduce((acc, cur) => {
+                acc.push(<Msg username={cur.username} message={cur.message} />);
+                return acc;
+              }, [])}
+        </div>
+        <MessageBox />
+      </div>
     );
   }
 }
+
 export default ChatContainer;

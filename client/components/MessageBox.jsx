@@ -33,7 +33,6 @@ class MessageBox extends Component {
 
   keyPress(event) {
     if (event.keyCode === 13) {
-      console.log(this.state.content);
       this.setState({ content: '' });
     }
   }
