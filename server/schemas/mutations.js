@@ -17,6 +17,9 @@ module.exports = {
       acc.push({ username: user_id, message, created_at });
       return acc;
     }, [])[0];
+    const usernameQueryText = `SELECT username FROM users WHERE _id=${userId}`
+    const usernameText = await query(usernameQueryText);
+    msg.username = usernameText.rows[0].username
     // publishing new data over subscriptions
     const messageResponse = {
       mutation: 'CREATED',
