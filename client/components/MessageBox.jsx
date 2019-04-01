@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import { Mutation } from 'react-apollo';
+import { createMessage } from '../schema/mutations';
 
 const styles = {
   container: {
@@ -47,9 +50,29 @@ class MessageBox extends Component {
           style={styles.textField}
           onKeyDown={this.keyPress}
         />
+        <Mutation mutation={createMessage}>
+          {(newMsg, { data }) => (
+            <Button
+              onClick={() => {
+                console.log(this.state.content)
+                newMsg({
+                  variables: {
+                    userId: 2,
+                    message: this.state.content,
+                  },
+                });
+                this.setState({ content: '' });
+              }}
+            >
+                Send
+            </Button>
+          )}
+        </Mutation>
       </div>
     );
   }
 }
 
 export default MessageBox;
+
+//

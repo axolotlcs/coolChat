@@ -1,10 +1,13 @@
 import gql from 'graphql-tag';
 
 export const createMessage = gql`
-  mutation($userId: Int!, $message: String!) {
-    createMessage (message: $message) {
-      userId
-      message
+  mutation ($userId: Int!, $message: String!) {
+    createMessage (userId: $userId, message: $message) {
+      mutation
+      message {
+        username
+        message
+      }
     }
   }`;
 
