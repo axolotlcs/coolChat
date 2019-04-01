@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
-import Sidebar from './Sidebar.jsx';
-import ChatContainer from './ChatContainer.jsx';
+import Sidebar from './Sidebar';
+import ChatContainer from './ChatContainer';
+
+const chatroomStyles = {
+  display: 'flex',
+  height: '100%',
+};
 
 class ChatroomContainer extends Component {
   constructor(props) {
@@ -10,8 +15,8 @@ class ChatroomContainer extends Component {
 
   render() {
     return (
-      <div className="chatroom">
-        <Sidebar activeUsers={[]}/>
+      <div style={chatroomStyles} className="chatroom">
+        <Sidebar activeUsers={[]} />
         <ChatContainer />
       </div>
     );
