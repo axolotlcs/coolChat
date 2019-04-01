@@ -33,5 +33,8 @@ module.exports = {
   devServer: {
     publicPath: '/dist/',
     hot: true,
+    historyApiFallback: {
+      index: 'index.html',
+    },
   },
 };

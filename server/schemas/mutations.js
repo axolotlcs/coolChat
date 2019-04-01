@@ -1,11 +1,6 @@
-const { PubSub } = require('apollo-server');
-const { query } = require('../models/db');
-//const { messageAdded } = require('./subscriptions');
 const pubsub = require('../pubsub');
-// console.log(pubsub);
-const MSG_ADDED = 'MSG_ADDED';
-// const pubsub = new PubSub();
-// console.log(pubsub);
+const { query } = require('../models/db');
+const { MSG_ADDED } = require('./constants');
 
 module.exports = {
   // not verifying write to DB; errors unhandled

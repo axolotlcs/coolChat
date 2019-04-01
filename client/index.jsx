@@ -4,6 +4,7 @@ import { ApolloClient } from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
+import { BrowserRouter } from 'react-router-dom';
 import { WebSocketLink } from 'apollo-link-ws';
 import { split } from 'apollo-link';
 import { getMainDefinition } from 'apollo-utilities';
@@ -38,7 +39,9 @@ const client = new ApolloClient({
 
 render(
   <ApolloProvider client={client}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </ApolloProvider>,
   document.querySelector('#root'),
 );
