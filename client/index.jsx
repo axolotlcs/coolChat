@@ -11,7 +11,8 @@ import { getMainDefinition } from 'apollo-utilities';
 import App from './App';
 
 const wsLink = new WebSocketLink({
-  uri: 'ws://192.168.10.139:4000/graphql',
+  //uri: 'ws://192.168.10.139:4000/graphql',
+  uri: 'ws://localhost:4000/graphql',
   options: {
     reconnect: true,
   },
@@ -19,7 +20,8 @@ const wsLink = new WebSocketLink({
 
 const cache = new InMemoryCache();
 const httpLink = new HttpLink({
-  uri: 'http://192.168.10.139:4000/graphql',
+  // uri: 'http://192.168.10.139:4000/graphql',
+  uri: 'http://localhost:4000/graphql',
 });
 
 // queries and mutations go over http and subscriptions over websockets

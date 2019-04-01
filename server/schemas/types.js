@@ -22,11 +22,6 @@ module.exports = gql`
     success: Boolean!
   }
 
-  type createMessage {
-    userId: Int!
-    message: String!
-  }
-
   type Mutation {
     createUser(userName: String!, password: String!): UserSuccess
     createMessage(userId: Int!, message: String!): MessageResponse
