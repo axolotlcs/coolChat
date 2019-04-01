@@ -50,14 +50,15 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
-    "graphql": "^14.2.0",
+    "graphql": "^14.1.0",
     "graphql-js-client": "^0.11.0",
     "graphql-tag": "^2.10.1",
     "pg": "^7.9.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-apollo": "^2.5.3",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.0"
   },
   "jest": {
     "moduleFileExtensions": [

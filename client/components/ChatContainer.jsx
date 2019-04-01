@@ -4,9 +4,12 @@ import Msg from './Msg';
 import MessageBox from './MessageBox';
 import { messageQuery } from '../schema/queries';
 
-const chatContainerStyles = {
-  flexGrow: 11,
-  height: '100%',
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    flexGrow: 1,
+  },
 };
 
 class ChatContainer extends Component {
@@ -17,8 +20,8 @@ class ChatContainer extends Component {
           if (loading) return <p>Loading</p>;
           if (error) return <p>error</p>;
           return (
-            <div id="chatContainer" style={chatContainerStyles}>
-              <div style={{ height: '90%' }}>
+            <div id="chatContainer" style={styles.container}>
+              <div style={{ height: '60vh', overflowY: 'auto' }}>
                 <Fragment>
                   {data.messages
                     && data.messages.reduce((acc, cur) => {

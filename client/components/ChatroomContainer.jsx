@@ -4,7 +4,6 @@ import ChatContainer from './ChatContainer';
 
 const chatroomStyles = {
   display: 'flex',
-  height: '100%',
 };
 
 class ChatroomContainer extends Component {
@@ -16,7 +15,7 @@ class ChatroomContainer extends Component {
   render() {
     return (
       <div style={chatroomStyles} className="chatroom">
-        <Sidebar activeUsers={[]} />
+        {/* <Sidebar activeUsers={[]} /> */}
         <ChatContainer />
       </div>
     );

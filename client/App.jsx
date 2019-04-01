@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import AuthContainer from './components/AuthContainer';
 import Header from './components/Header';
 import ChatroomContainer from './components/ChatroomContainer';
+
 
 class App extends Component {
   constructor(props) {
@@ -22,12 +24,15 @@ class App extends Component {
 
   render() {
     return (
-      <div id="app" style={{ height: '100%' }}>
-        <Header />
-        <div style={{ height: 'calc(100% - 60px)' }}>
-          <ChatroomContainer />
+      <Router>
+        <div id="app">
+          <Header />
+          <div>
+            <Route exact path="/" component={AuthContainer} />
+            <Route path="/chat" component={ChatroomContainer} />
+          </div>
         </div>
-      </div>
+      </Router>
       // <AuthContainer handleLogin={this.handleLogin} handleSignUp={this.signUpHandle} />
     );
   }

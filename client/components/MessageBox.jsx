@@ -1,4 +1,18 @@
 import React, { Component } from 'react';
+import TextField from '@material-ui/core/TextField';
+
+const styles = {
+  container: {
+    display: 'flex',
+    padding: '10px',
+  },
+  textField: {
+    flexGrow: 9,
+  },
+  button: {
+    flexGrow: 1,
+  },
+};
 
 class MessageBox extends Component {
   constructor(props) {
@@ -7,28 +21,36 @@ class MessageBox extends Component {
     this.state = {
       content: '',
     };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.keyPress = this.keyPress.bind(this);
+  }
+
+  handleChange(event) {
+    const message = event.target.value;
+    this.setState({ content: message });
+  }
+
+  keyPress(event) {
+    if (event.keyCode === 13) {
+      console.log(this.state.content);
+      this.setState({ content: '' });
+    }
   }
 
   render() {
+    const { content } = this.state;
     return (
-      <div className="messageBox">
-        <input
-          type="text"
-          id="textInput"
-          placeholder="Gimme some text"
-          value={this.state.content}
-          onChange={event => this.setState({content: event.target.value})}
+      <div className="messageBox" style={styles.container}>
+        <TextField
+          value={content}
+          onChange={this.handleChange}
+          style={styles.textField}
+          onKeyDown={this.keyPress}
         />
-        <button
-          type="button"
-          id="sendBtn"
-          onClick={this.props.handleSend}
-        >
-          Send
-        </button>
       </div>
-    )
+    );
   }
-};
+}
 
 export default MessageBox;
