@@ -14,12 +14,17 @@ IF NOT EXISTS messages
   "message" VARCHAR NOT NULL,
   "created_at" TIMESTAMP DEFAULT NOW
 (),
+  "chatroom_id" INTEGER NOT NULL,
   FOREIGN KEY
 ("user_id")
-  REFERENCES users
+  REFERENCES usersm
 ("_id")
   ON
-DELETE CASCADE 
+DELETE CASCADE,
+  FOREIGN KEY ("chatroom_id")
+REFERENCES chatrooms
+("_id") ON
+DELETE CASCADE
 );
 
 CREATE TABLE

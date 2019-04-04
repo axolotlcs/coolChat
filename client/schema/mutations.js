@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const createMessage = gql`
-  mutation($userId: Int!, $message: String!) {
-    createMessage(userId: $userId, message: $message) {
+  mutation($userId: Int!, $message: String!, $chatroomId: String!) {
+    createMessage(userId: $userId, message: $message, chatroomId: $chatroomId) {
       mutation
       message {
         username
@@ -15,8 +15,17 @@ export const createMessage = gql`
 export const createUser = gql`
   mutation($userName: String!, $password: String!) {
     createUser(userName: $userName) {
-      userName
-      passwords
+      username
+      password
+    }
+  }
+`;
+
+export const login = gql`
+  mutation($username: String!, $password: String!) {
+    login(username: $username, password: $password) {
+      username
+      success
     }
   }
 `;
